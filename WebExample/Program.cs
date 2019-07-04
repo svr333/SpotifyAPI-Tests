@@ -1,4 +1,6 @@
-﻿using SpotifyAPI.Web;
+﻿using IdentityServer3.Core.Models;
+using Spotify.API.NetCore.Auth;
+using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
@@ -43,7 +45,7 @@ namespace WebExample
             AuthorizationCodeAuth auth = (AuthorizationCodeAuth)sender;
             auth.Stop();
 
-            Token token = await auth.ExchangeCode(payload.Code);
+            SpotifyAPI.Web.Models.Token token = await auth.ExchangeCode(payload);
             SpotifyWebAPI api = new SpotifyWebAPI
             {
                 AccessToken = token.AccessToken,
